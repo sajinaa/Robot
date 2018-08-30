@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row  margin-top">
+    <h1 class="margin-bottom">Robots Collection</h1>
+  </div>
+  <div class="row margin-top">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <form>
+        <div class="form-group">
+          <label for="robotType">Robot Type</label>
+          <select name="robotType" class="form-control" id="robotType" [(ngModel)]="selectedType">
+            <option [value]="" [disabled]="true" [selected]="true">Select..</option>
+            <option *ngFor="let rbttpe of robotInfo" [value]="rbttpe.type">{{rbttpe.type}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="robotColor" class="margin-top">Robot Color</label>
+          <select name="robotColor" class="form-control" id="robotColor" [(ngModel)]="selectedColor">
+            <option [value]="" [disabled]="true" [selected]="true">Select..</option>
+            <option *ngFor="let rbtclr of robotInfo" [value]="rbtclr.color">{{rbtclr.color}}</option>
+          </select>
+        </div>
+        <input class="btn btn-success margin-top btn-lg" type="button" (click)="addRobot()" value="Build My Bot" [disabled]="(this.selectedType === 'Select..' || this.selectedColor === 'Select..')">
+      </form>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+    <div class="col-lg-7 col-md-6 col-sm-7">
+      <div class="jumbotron margin-top">
+        <h1 class="text-center margin-top" *ngIf="roborContent.length === 0">Add Some Robots</h1>
+        <!-- <div class="flex-container" *ngFor="let robot of roborContent;let i = index">
+              <div style="flex-grow: 8">{{robot.type}}</div>
+              <div style="flex-grow: 2">{{robot.color}}</div>
+              <div style="flex-grow: 1">
+                  <button type="button" class="btn btn-link text-primary margin-bottom" (click) = "removeRobot(i)">Remove</button>  
+                </div>
+            </div> -->
+        <div class="table-responsive" *ngIf="roborContent.length !== 0">
+          <table class="table table-bordered">
+            <tbody>
+              <tr *ngFor="let robot of roborContent;let i = index">
+                <td>{{robot.type}}</td>
+                <td>{{robot.color}}</td>
+                <td>
+                  <button type="button" class="btn btn-link text-primary small-text" (click)="removeRobot(i)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
